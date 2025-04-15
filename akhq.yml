@@ -1,0 +1,25 @@
+akhq:
+  server:
+    port: 8080
+
+  connections:
+    kafka-cluster:
+      properties:
+        bootstrap.servers: "broker:9092"
+      schema-registry:
+        url: "http://schema-registry:8081"
+
+  micronaut:
+    security:
+      enabled: true
+  akhq.security:
+    basic-auth:
+      - username: admin
+        password: "$2a$<hashed password>"
+        passwordHash: BCRYPT
+        groups:
+          - admin
+      - username: reader
+        password: "<SHA-256 hashed password>"
+        groups:
+          - reader
